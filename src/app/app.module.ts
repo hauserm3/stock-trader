@@ -5,14 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './shared/material.module';
-import { MarketComponent } from './market/market.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MarketComponent,
-    PortfolioComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
