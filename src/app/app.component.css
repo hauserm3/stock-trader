@@ -1,0 +1,9 @@
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-row button {
+  margin-right: 8px;
+}
