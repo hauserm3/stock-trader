@@ -5,12 +5,19 @@ export class User {
   balance: number;
 }
 
-export class Market {
+export class Stock {
   constructor() {}
   id: number;
   name: string;
   price: number;
   category: string;
+  quantity: number;
+}
+
+export class SnackBar {
+  constructor() {}
+  msg: string;
+  err: boolean;
 }
 
 

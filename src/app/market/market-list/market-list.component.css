@@ -11,3 +11,12 @@ mat-card {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.text-center {
+  max-width: 250px;
+  text-align: center;
+}
+
+td mat-form-field {
+  width: 100px;
+}

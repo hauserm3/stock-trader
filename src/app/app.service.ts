@@ -1,21 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { URL, User } from './shared/models';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { SnackBar, URL, User } from './shared/models';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  constructor(private http: HttpClient) { }
+  snackBar: SnackBar;
 
-  getUser(): Observable<any> {
-    return this.http.get<User>(`${URL}/user`)
+  private balance$: BehaviorSubject<number> = new BehaviorSubject(0);
+  balance = this.balance$.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.snackBar = new SnackBar();
+  }
+
+  getUser() {
+    this.http.get<User>(`${URL}/user`)
       .pipe(
         catchError(this.handleError)
-      );
+      )
+      .subscribe((user: User) => {
+        this.updateBalance(user.balance);
+      });
+  }
+
+  changeBalance(balance) {
+    this.http.put(`${URL}/user`, {balance: balance})
+      .subscribe((res: User) => {
+        this.updateBalance(res.balance);
+      });
+  }
+
+  updateBalance(balance) {
+    this.balance$.next(balance);
   }
 
   private handleError(error: HttpErrorResponse) {

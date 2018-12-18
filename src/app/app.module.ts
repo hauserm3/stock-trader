@@ -7,10 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
 import { AppService } from './app.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
+import { PortfolioService } from './portfolio/portfolio.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
@@ -19,8 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MaterialModule
   ],
+  entryComponents: [
+    SnackBarComponent
+  ],
   providers: [
-    AppService
+    AppService,
+    PortfolioService
   ],
   bootstrap: [AppComponent]
 })

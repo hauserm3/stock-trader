@@ -4,6 +4,7 @@ import { MarketRoutingModule } from './market-routing.module';
 import { MarketListComponent } from './market-list/market-list.component';
 import { MaterialModule } from '../shared/material.module';
 import { MarketService } from './market.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { MarketService } from './market.service';
   imports: [
     CommonModule,
     MarketRoutingModule,
+    FormsModule,
     MaterialModule
   ],
   providers: [

@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule, MatCardModule,
   MatFormFieldModule,
-  MatInputModule, MatPaginatorModule, MatSelectModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSnackBarModule,
   MatTableModule,
   MatToolbarModule
 } from '@angular/material';
@@ -19,7 +22,8 @@ import {
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   exports: [
     MatToolbarModule,
@@ -29,7 +33,8 @@ import {
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }
