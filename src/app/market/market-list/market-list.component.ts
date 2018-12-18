@@ -13,8 +13,6 @@ import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 export class MarketListComponent implements OnInit {
   balance = 0;
 
-  // markets: Market[] = [];
-
   categories: string[] = [];
 
   displayedColumns: string[] = ['name', 'price', 'quantity', 'action'];
@@ -57,7 +55,6 @@ export class MarketListComponent implements OnInit {
   }
 
   buy(stock: Stock) {
-
     if (this.validateQuantity(stock.quantity, stock.price)) {
       this.marketService.buyStocks(stock).subscribe(res => {
         this.appService.changeBalance(this.balance - (stock.price * stock.quantity));

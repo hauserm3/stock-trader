@@ -12,6 +12,7 @@ export class Stock {
   price: number;
   category: string;
   quantity: number;
+  amount: number;
 }
 
 export class SnackBar {

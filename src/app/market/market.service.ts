@@ -14,7 +14,6 @@ export class MarketService {
               private portfolioService: PortfolioService) {
     this.portfolioService.getPortfolio();
     this.portfolioService.portfolio.subscribe( stocks => {
-      console.log('portfolio in market', stocks);
       this.portfolio = stocks;
     });
   }

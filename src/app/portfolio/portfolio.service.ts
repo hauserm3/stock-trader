@@ -3,14 +3,20 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { Stock, URL, User } from '../shared/models';
 import { catchError, tap } from 'rxjs/operators';
+import { AppService } from '../app.service';
 
 @Injectable()
 export class PortfolioService {
 
+  balance = 0;
+
   private portfolio$: BehaviorSubject<Stock[]> = new BehaviorSubject([]);
   portfolio = this.portfolio$.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private appService: AppService) {
+    this.appService.balance.subscribe(balance => this.balance = balance);
+  }
 
   getPortfolio() {
     this.http.get<Stock[]>(`${URL}/portfolio`)
@@ -38,12 +44,28 @@ export class PortfolioService {
       );
   }
 
-  SellStocks(stock: Stock): Observable<any> {
-    // return this.http.put(`${URL}/portfolio/${stock.id}`, stock)
-    return this.http.post(`${URL}/portfolio`, stock)
+  deletePortfolio(stock: Stock): Observable<any> {
+    return this.http.delete(`${URL}/portfolio/${stock.id}`)
       .pipe(
+        tap( res => {
+            this.getPortfolio();
+            // this.appService.changeBalance(this.balance + (stock.price * stock.quantity));
+          }),
         catchError(this.handleError)
       );
+  }
+
+  sellStocks(val: Stock): Observable<any> {
+    const stock = Object.assign(val);
+
+    if (stock.quantity === +stock.amount) {
+      delete stock.amount;
+      return this.deletePortfolio(stock);
+    } else {
+      stock.quantity = +stock.amount;
+      delete stock.amount;
+      return this.updatePortfolio(stock);
+    }
   }
 
   private handleError(error: HttpErrorResponse) {
