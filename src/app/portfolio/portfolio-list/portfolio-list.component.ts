@@ -33,11 +33,7 @@ export class PortfolioListComponent implements OnInit {
 
     this.portfolioService.getPortfolio();
     this.portfolioService.portfolio.subscribe((stocks) => {
-      if (stocks.length) {
-        this.countTotalPrice(stocks);
-      } else {
-        this.total = 0;
-      }
+      this.total = this.countTotalPrice(stocks);
       this.dataSource.data = stocks;
       this.categories = this.uniqueCategories(stocks);
     });
@@ -45,10 +41,12 @@ export class PortfolioListComponent implements OnInit {
 
   countTotalPrice(stocks: Stock[]) {
     let totalPrice = 0;
-    stocks.forEach((current) => {
-      totalPrice += current.quantity * current.price;
-    });
-    this.total = totalPrice;
+    if (stocks.length) {
+      stocks.forEach((current) => {
+        totalPrice += current.quantity * current.price;
+      });
+    }
+    return totalPrice;
   }
 
   uniqueCategories(arr: Stock[]) {

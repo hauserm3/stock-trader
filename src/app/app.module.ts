@@ -8,7 +8,7 @@ import { MaterialModule } from './shared/material.module';
 import { AppService } from './app.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
-import { PortfolioService } from './portfolio/portfolio.service';
+
 
 @NgModule({
   declarations: [
@@ -26,8 +26,7 @@ import { PortfolioService } from './portfolio/portfolio.service';
     SnackBarComponent
   ],
   providers: [
-    AppService,
-    PortfolioService
+    AppService
   ],
   bootstrap: [AppComponent]
 })

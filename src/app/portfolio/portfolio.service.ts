@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { Stock, URL, User } from '../shared/models';
+import { Stock, URL } from '../shared/models';
 import { catchError, tap } from 'rxjs/operators';
 import { AppService } from '../app.service';
 
@@ -49,7 +49,6 @@ export class PortfolioService {
       .pipe(
         tap( res => {
             this.getPortfolio();
-            // this.appService.changeBalance(this.balance + (stock.price * stock.quantity));
           }),
         catchError(this.handleError)
       );

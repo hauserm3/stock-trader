@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Stock, URL, User } from '../shared/models';
+import { Stock, URL } from '../shared/models';
 import { catchError } from 'rxjs/operators';
 import { PortfolioService } from '../portfolio/portfolio.service';
 

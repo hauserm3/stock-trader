@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
-import { User } from './shared/models';
-import { PortfolioService } from './portfolio/portfolio.service';
 
 @Component({
   selector: 'app-root',
